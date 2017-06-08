@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data-sources>
-	<data-source id="mysql5-15c8691347a-9bacbdb023738f4" provider="mysql" driver="mysql5" name="MySQL - localhost(root)" save-password="true" show-system-objects="true" read-only="false">
-		<connection host="localhost" port="3306" server="" database="" url="jdbc:mysql://localhost:3306/" user="root" password="AQsJNFNMSwJl8w==" home="C:\Program Files\MySQL\MySQL Server 5.7" type="dev">
+	<data-source id="mysql5-15c8832573e-5c0ddbc44d9d050f" provider="mysql" driver="mysql5" name="MySQL - localhost(root)" save-password="true" show-system-objects="true" read-only="false">
+		<connection host="localhost" port="3306" server="" database="" url="jdbc:mysql://localhost:3306/" user="root" password="AQsJNFNMSwJl8w==" type="dev">
+			<network-handler type="PROXY" id="socks_proxy" enabled="false" save-password="false">
+				<property name="socks-port" value="1080"/>
+			</network-handler>
 			<network-handler type="CONFIG" id="mysql_ssl" enabled="false" save-password="false">
 				<property name="ssl.public.key.retrieve" value="false"/>
 				<property name="ssl.verify.server" value="true"/>
@@ -11,9 +14,6 @@
 				<property name="sshConnectTimeout" value="10000"/>
 				<property name="port" value="22"/>
 				<property name="authType" value="PASSWORD"/>
-			</network-handler>
-			<network-handler type="PROXY" id="socks_proxy" enabled="false" save-password="false">
-				<property name="socks-port" value="1080"/>
 			</network-handler>
 		</connection>
 	</data-source>

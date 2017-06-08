@@ -1,12 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>luuzun_board</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>luuzun_board</display-name>
+	<!-- 
+		display-name		: 어플리케이션 이름
+		description			: 어플리케이션 설명
+		distributable
+		context-param
+		filter				: 클라이언트의 요청을 필터에 정의된 명령을 수행한 후 서버로 전송
+		filter-mapping
+		listener
+		servlet				: 서블릿 클래스를 서블릿으로 등록
+		servlet-mapping		: 보안과 주소를 간략화 하기 위해 사용
+		session-config		: 세션 기간 설정
+		mime-mapping		: mime 매핑
+		welcome-file-list	: 시작페이지 설정
+		error-page			: 존재하지 않는 페이지, 404에러시 처리 페이지 설정
+		taglib				: 태그 라이브러리 설정
+		resource-env-ref
+		resource-ref
+		security-constraint
+		login-config
+		security-role
+		env-entry
+		ejb-ref
+		ejb-local-ref
+		init-param			: 서블릿에서 사용할 변수 설정
+ 	-->
+	<servlet>
+		<servlet-name>DBCPInit</servlet-name>
+		<servlet-class>com.luuzun.jdbc.DBCPInit</servlet-class>
+		
+		<!-- DBCP Driver -->
+		<init-param>
+			<param-name>DBCPDriver</param-name>
+			<param-value>com.mysql.jdbc.Driver</param-value>
+		</init-param>
+
+		<!-- Database URL -->
+		<init-param>
+			<param-name>DBCPUrl</param-name>
+			<param-value>jdbc:mysql://localhost:3306/luuzun_board?characterEncoding=utf8</param-value>
+		</init-param>
+
+		<!-- Database Access ID -->
+		<init-param>
+			<param-name>dbUser</param-name>
+			<param-value>root</param-value>
+		</init-param>
+
+		<!-- Database Access Password -->
+		<init-param>
+			<param-name>dbPassword</param-name>
+			<param-value>rootroot</param-value>
+		</init-param>
+
+		<!-- DataBase Pool Name(Database Name) -->
+		<init-param>
+			<param-name>poolName</param-name>
+			<param-value>luuzun_board</param-value>
+		</init-param>
+
+		<!-- 서버 구동 시 자동으로 실행 -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet>
+		<servlet-name>ControllerUsingURI</servlet-name>
+		<servlet-class>com.luuzun.controller.ControllerUsingURI</servlet-class>
+		<init-param>
+			<param-name>configFile</param-name>
+			<param-value>/WEB-INF/commandHandler.properties</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ControllerUsingURI</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>MySQLDriverLoader</servlet-name>
+		<servlet-class>com.luuzun.jdbc.MySQLDriverLoader</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!-- 문자 인코딩 필터 -->
+	<filter>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>com.luuzun.util.CharacterEncodingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- 로그인 인증 필터 -->
+	<filter>
+		<filter-name>LoginCheckFilter</filter-name>
+		<filter-class>com.luuzun.util.LoginCheckFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>LoginCheckFilter</filter-name>
+		<url-pattern>/write.do</url-pattern>
+	</filter-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
 </web-app>

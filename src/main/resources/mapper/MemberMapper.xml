@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luuzun.member.model.MemberDao">
+
+	<insert id="insert" parameterType="member">
+		INSERT INTO member VALUES
+			(#{memberId}, #{memberName}, #{memberPassword}, #{memberRegDate})
+	</insert>
+
+	<select id="selectByAll" resultType="member">
+		SELECT member_id, member_name, member_password, member_reg_date
+			FROM Member
+	</select>
+	
+	<select id="selectById" parameterType="string" resultType="member">
+		SELECT member_id, member_name, member_password, member_reg_date
+			FROM Member
+			WHERE member_id=#{memberId};
+	</select>
+	
+	<update id="update" parameterType="string">
+		UPDATE Member SET member_name=#{memberName}, member_password=#{memberPassword}, member_reg_date=#{memberRegDate} 
+			WHERE member_id=#{memberId};
+	</update>
+	
+	<update id="updatePassword" parameterType="member">
+		UPDATE Member SET member_password=#{memberPassword} 
+			WHERE member_id=#{memberId};
+	</update>
+	
+	<delete id="delete" parameterType="member">
+		DELETE FROM Member 
+			WHERE member_id=#{memberId};
+	</delete>
+
+</mapper>
