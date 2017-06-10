@@ -1,7 +1,36 @@
 @CHARSET "UTF-8";
 
-fieldset { width: 350px; border: 1px solid gray; margin: 0 auto;}
-label { padding-left: 10px; width: 120px; float: left; }
-p:LAST-CHILD { text-align: center }
-span.errorMsg { font-size: 12px; color: red; display: none; margin-left: 131px;}
-.errorMsgByID {color:red; text-align: center;}
+fieldset {
+	width: 350px;
+	border: 1px solid gray;
+	margin: 0 auto;
+}
+
+label {
+	padding-left: 10px;
+	width: 120px;
+	float: left;
+}
+
+p:LAST-CHILD {
+	text-align: center
+}
+
+span.errorMsg {
+	font-size: 12px;
+	color: red;
+	display: none;
+	margin-left: 131px;
+}
+
+.errorMsgByID {
+	color: red;
+	text-align: center;
+}
+
+.duplicateIdErrorMsg {
+	font-size: 12px;
+	color: red;
+	display: none;
+	margin-left: 131px;
+}

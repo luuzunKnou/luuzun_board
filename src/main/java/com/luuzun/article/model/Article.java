@@ -1,88 +1,98 @@
 package com.luuzun.article.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.luuzun.member.model.Member;
+
 public class Article {
-   private int number;
-   private String id;
-   private String name;
-   private String title;
-   private Date regDate;
-   private Date modifiedDate;
-   private int readCount;
-   
-   public Article() {}
-   
-   public Article(int number, String id, String name, String title, Date regDate, Date modifiedDate, int readCount) {
-      super();
-      this.number = number;
-      this.id = id;
-      this.name = name;
-      this.title = title;
-      this.regDate = regDate;
-      this.modifiedDate = modifiedDate;
-      this.readCount = readCount;
-   }
-   
-   public int getNumber() {
-      return number;
-   }
-   
-   public void setNumber(int number) {
-      this.number = number;
-   }
-   
-   public String getId() {
-      return id;
-   }
-   
-   public void setId(String id) {
-      this.id = id;
-   }
-   
-   public String getName() {
-      return name;
-   }
-   
-   public void setName(String name) {
-      this.name = name;
-   }
-   
-   public String getTitle() {
-      return title;
-   }
-   
-   public void setTitle(String title) {
-      this.title = title;
-   }
-   
-   public Date getRegDate() {
-      return regDate;
-   }
-   
-   public void setRegDate(Date regDate) {
-      this.regDate = regDate;
-   }
-   
-   public Date getModifiedDate() {
-      return modifiedDate;
-   }
-   
-   public void setModifiedDate(Date modifiedDate) {
-      this.modifiedDate = modifiedDate;
-   }
-   
-   public int getReadCount() {
-      return readCount;
-   }
-   
-   public void setReadCount(int readCount) {
-      this.readCount = readCount;
-   }
+	public static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	
+	private int articleNo;
+	private Member writerId;
+	private String title;
+	private Date articleRegDate;
+	private Date articleModDate;
+	private int readCnt;
+
+	public Article() {}
+
+	public Article(int articleNo, Member writerId, String title, Date articleRegDate, Date articleModDate, int readCnt) {
+		this.articleNo = articleNo;
+		this.writerId = writerId;
+		this.title = title;
+		this.articleRegDate = articleRegDate;
+		this.articleModDate = articleModDate;
+		this.readCnt = readCnt;
+	}
+
+	public Article(Member writerId, String title, Date articleRegDate, Date articleModDate) {
+		this.writerId = writerId;
+		this.title = title;
+		this.articleRegDate = articleRegDate;
+		this.articleModDate = articleModDate;
+	}
+
+	public int getArticleNo() {
+		return articleNo;
+	}
+
+	public void setArticleNo(int articleNo) {
+		this.articleNo = articleNo;
+	}
+
+	public Member getWriterId() {
+		return writerId;
+	}
+
+	public void setWriterId(Member writerId) {
+		this.writerId = writerId;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public Date getArticleRegDate() {
+		return articleRegDate;
+	}
+	
+	public String getArticleRegDateString() {
+		return simpleDateFormat.format(articleRegDate);
+	}
+
+	public void setArticleRegDate(Date articleRegDate) {
+		this.articleRegDate = articleRegDate;
+	}
+
+	public Date getArticleModDate() {
+		return articleModDate;
+	}
+	
+	public String getArticleModDateString() {
+		return simpleDateFormat.format(articleModDate);
+	}
+	
+	public void setArticleModDate(Date articleModDate) {
+		this.articleModDate = articleModDate;
+	}
+
+	public int getReadCnt() {
+		return readCnt;
+	}
+
+	public void setReadCnt(int readCnt) {
+		this.readCnt = readCnt;
+	}
 
 	@Override
 	public String toString() {
-		return String.format("Article [number=%s, id=%s, name=%s, title=%s, regDate=%s, modifiedDate=%s, readCount=%s]",
-				number, id, name, title, regDate, modifiedDate, readCount);
+		return String.format(
+				"Article [articleNo=%s, writerId=%s, title=%s, articleRegDate=%s, articleModDate=%s, readCnt=%s]",
+				articleNo, writerId, title, articleRegDate, articleModDate, readCnt);
 	}
 }

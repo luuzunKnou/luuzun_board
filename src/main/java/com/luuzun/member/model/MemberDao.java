@@ -9,5 +9,6 @@ public interface MemberDao {
 	public List<Member> selectByAll() throws SQLException;
 	public void delete(Member member) throws SQLException;
 	public void update(Member member) throws SQLException;
+	
 	public void updatePassword(Member member);
 }

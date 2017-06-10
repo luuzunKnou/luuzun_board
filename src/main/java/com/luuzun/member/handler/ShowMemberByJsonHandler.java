@@ -1,7 +1,5 @@
 package com.luuzun.member.handler;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,18 +9,21 @@ import com.luuzun.controller.CommandHandler;
 import com.luuzun.member.model.Member;
 import com.luuzun.member.model.MemberDao;
 import com.luuzun.util.MySqlSessionFactory;
+import com.luuzun.util.ResponseByJSON;
 
-public class ShowMemberListHandler implements CommandHandler{
+public class ShowMemberByJsonHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		String memberId = req.getParameter("memberId");
+		Member member;
 		try(SqlSession session = MySqlSessionFactory.openSession();){
 			MemberDao dao = session.getMapper(MemberDao.class);
-			List<Member> memberList = dao.selectByAll();
-			req.setAttribute("memberList", memberList);
-		} catch (Exception e) {
-			e.printStackTrace();
+			member = dao.selectById(memberId);
 		}
-		return "/WEB-INF/view/member/showMemberList.jsp";
+
+		ResponseByJSON.getInstance().responseByJSON(res, member);
+		return null;
 	}
+
 }

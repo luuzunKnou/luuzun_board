@@ -14,6 +14,7 @@
 <script type="text/javascript">
 	$(function(){
 		$("form[name='f1']").submit(function() {
+			$("span[class='errorMsg']").css("display","none");
 			if(checkInputEmpty($("input[name]")) == false){
 				return false;
 			}

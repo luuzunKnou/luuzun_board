@@ -1,7 +1,8 @@
-DROP DATABASE luuzun_board;
+-- DROP DATABASE luuzun_board;
 
 CREATE DATABASE luuzun_board;
 USE luuzun_board;
+
 
 CREATE TABLE member (
 	member_id       VARCHAR(50) NOT NULL, 
@@ -12,7 +13,7 @@ CREATE TABLE member (
 );
 
 CREATE TABLE article (
-	article_no       INTEGER(11) NOT NULL, 
+	article_no       INTEGER(11) NOT NULL AUTO_INCREMENT, 
 	writer_id        VARCHAR(50) NOT NULL, 
 	title            VARCHAR(50) NOT NULL, 
 	article_reg_date DATE        NOT NULL, 
@@ -27,7 +28,7 @@ CREATE TABLE article (
 CREATE TABLE article_content (
 	article_no INTEGER(11)  NOT NULL, 
 	content    TEXT         NULL, 
-	file       VARCHAR(200) NULL, 
+	file_path  VARCHAR(200) NULL, 
 	FOREIGN KEY (article_no) 
 		REFERENCES article (article_no)
 		ON DELETE CASCADE,
@@ -46,3 +47,13 @@ INSERT INTO member
 (member_id, member_name, member_password, member_reg_date)
 VALUES('ASOR', '신진욱', '1234', CURDATE());
 
+SELECT * FROM MEMBER;
+SELECT * FROM article;
+SELECT * FROM article_content;
+INSERT INTO article	(writer_id, title, article_reg_date, article_mod_date)
+			VALUES("ASOR", "ASOR", CURDATE(), CURDATE());
+select distinct last_insert_id() from article;
+
+	INSERT INTO article_content
+			(article_no, content, file_path)
+			VALUES(1, "String", "")

@@ -1,6 +1,5 @@
 package com.luuzun.article.handler;
 
-import java.sql.Connection;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +12,6 @@ import com.luuzun.article.model.ArticleContent;
 import com.luuzun.article.model.ArticleContentDao;
 import com.luuzun.article.model.ArticleDao;
 import com.luuzun.controller.CommandHandler;
-import com.luuzun.jdbc.JdbcUtil;
 import com.luuzun.member.model.Member;
 import com.luuzun.member.model.MemberDao;
 import com.luuzun.util.MySqlSessionFactory;
@@ -22,36 +20,32 @@ public class WriteArticleHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		String memberId = (String) req.getSession().getAttribute("userAuth");
 		if(req.getMethod().equalsIgnoreCase("get")){
-			return "/WEB-INF/view/newArticleForm.jsp";
+			req.setAttribute("writeId", memberId);
+			return "/WEB-INF/view/article/writeArticleForm.jsp";
 		}else if(req.getMethod().equalsIgnoreCase("post")){
-			String memberId = (String) req.getSession().getAttribute("userAuth");
-			String title = req.getParameter("title");
-			String content = req.getParameter("content");
-			
-			Connection con = null;
-			
-			try{
-				SqlSession session= null;
-				session = MySqlSessionFactory.openSession();
-				MemberDao dao = session.getMapper(MemberDao.class);
+			try(SqlSession session = MySqlSessionFactory.openSession();){
 				
-				Member member = dao.selectById(memberId);
-				System.out.println(member);
-				Date now = new Date();
-				int articleNo = ArticleDao.getInstance().insert(con, 
-						new Article(0, member.getMemberId(), member.getMemberName(), title, now, now, 0));
+				String title = req.getParameter("title");
+				String content = req.getParameter("content");
 				
-				ArticleContentDao.getInstance().insert(con, new ArticleContent(articleNo, content));
-				session.commit();
-				return "/WEB-INF/view/newArticleSuccess.jsp";
+				MemberDao memberDao = session.getMapper(MemberDao.class);
+				ArticleDao articleDao = session.getMapper(ArticleDao.class);
+				ArticleContentDao articleContentDao = session.getMapper(ArticleContentDao.class);
 
-			} catch (Exception e) {
-				con.rollback();
-				e.printStackTrace();
-			} finally {
-				JdbcUtil.close(con);
+				Member member = memberDao.selectById(memberId);
+				Article article = new Article(member, title, new Date(), new Date());
+				articleDao.insert(article);
+				article.setArticleNo(articleDao.selectLastId());
+	
+				ArticleContent articleContent = new ArticleContent(article, content, "");
+				articleContentDao.insert(articleContent);
+				
+				session.commit();
 			}
+
+			return "/WEB-INF/view/article/writeArticleSuccess.jsp";
 		}
 		return null;
 	}

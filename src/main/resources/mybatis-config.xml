@@ -8,7 +8,9 @@
 	  <setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
 	<typeAliases>
-		<typeAlias type="com.luuzun.member.model.Member" />
+		<typeAlias type="com.luuzun.member.model.Member"/>
+		<typeAlias type="com.luuzun.article.model.Article"/>
+		<typeAlias type="com.luuzun.article.model.ArticleContent"/>
 	</typeAliases>
 
 	<environments default="development">
@@ -37,5 +39,7 @@
 
 	<mappers>
 		<mapper resource="mapper/MemberMapper.xml" />
+		<mapper resource="mapper/ArticleMapper.xml" />
+		<mapper resource="mapper/ArticleContentMapper.xml" />
 	</mappers>
 </configuration>

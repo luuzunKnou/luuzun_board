@@ -1,36 +1,45 @@
 package com.luuzun.article.model;
 
 public class ArticleContent {
-	private int number;
+	private Article article;
 	private String content;
-	public ArticleContent() {
-		super();
-	}
+	private String filePath;
 	
-	public ArticleContent(int number, String content) {
+	public ArticleContent() {}
+
+	public ArticleContent(Article article, String content, String filePath) {
 		super();
-		this.number = number;
+		this.article = article;
 		this.content = content;
+		this.filePath = filePath;
 	}
 
-	public int getNumber() {
-		return number;
+	public Article getArticle() {
+		return article;
 	}
-	
-	public void setNumber(int number) {
-		this.number = number;
+
+	public void setArticle(Article article) {
+		this.article = article;
 	}
-	
+
 	public String getContent() {
 		return content;
 	}
-	
+
 	public void setContent(String content) {
 		this.content = content;
 	}
 
+	public String getFilePath() {
+		return filePath;
+	}
+
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+
 	@Override
 	public String toString() {
-		return String.format("ArticleContent [number=%s, content=%s]", number, content);
+		return String.format("ArticleContent [article=%s, content=%s, filePath=%s]", article, content, filePath);
 	}
 }

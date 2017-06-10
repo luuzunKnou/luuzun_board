@@ -36,16 +36,8 @@ public class JoinHandler implements CommandHandler{
 				dao.insert(member);
 				session.commit();
 			}
-			//req.setAttribute("member", member);
-			
-			res.setContentType("application/json;charset=utf-8");//보낼 데이터가 json임을 명시함
-			ObjectMapper om = new ObjectMapper();
-			String json = om.writeValueAsString(member);//객체의 값을 json string으로 변환
-			PrintWriter pw = res.getWriter();
-			pw.print(json);// response에 json String을 넣음
-			pw.flush();
-
-			//return "/WEB-INF/view/member/JoinSuccess.jsp";
+			req.setAttribute("member", member);
+			return "/WEB-INF/view/member/JoinSuccess.jsp";
 		}
 		return null;
 	}

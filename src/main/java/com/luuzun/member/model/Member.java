@@ -1,8 +1,11 @@
 package com.luuzun.member.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Member {
+	public static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
 	private String memberId;
 	private String memberName;
 	private String memberPassword;
@@ -50,6 +53,10 @@ public class Member {
 	
 	public Date getMemberRegDate() {
 		return memberRegDate;
+	}
+	
+	public String getMemberRegDateString(){
+		return simpleDateFormat.format(memberRegDate);
 	}
 	
 	public void setMemberRegDate(Date memberRegDate) {

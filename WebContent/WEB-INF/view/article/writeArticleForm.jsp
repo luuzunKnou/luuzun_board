@@ -16,14 +16,11 @@
 		<p>
 			<label>제목</label><input type="text" name="title">
 			<span class="errorMsg"> 제목을 입력하세요 </span> 
-		</p>
 		<p>
 			<label>내용</label><textarea rows="30" cols="60" name="content"></textarea>
 			<span class="errorMsg"> 내용을 입력하세요 </span> 
-		</p>
 		<p>
 			<input type="submit" value="추가">
-		</p>
 		</fieldset>
 	</form>
 </body>

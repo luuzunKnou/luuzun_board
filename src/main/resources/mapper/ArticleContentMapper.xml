@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luuzun.article.model.ArticleContentDao">
+	<resultMap type="articleContent" id="ArticleContentResult">
+		<result 		property="content" 	column="content" />
+		<result 		property="filePath" column="file_path" />
+		<association 	property="article" 	resultMap="com.luuzun.ArticleMapper.ArticleResult"/>
+	</resultMap>
+	<insert id="insert" parameterType="Article">
+		INSERT INTO article_content
+			(article_no, content, file_path)
+			VALUES(#{article.articleNo}, #{content}, #{filePath})
+	</insert>
+
+	<select id="selectByAll" resultMap ="ArticleContentResult">
+		SELECT * 
+			FROM article_content
+	</select>
+	
+	<select id="selectById" parameterType="string" resultMap ="ArticleContentResult">
+		SELECT * 
+			FROM article_content
+			WHERE article_no=#{articleNo}
+	</select>
+	
+	<update id="update" parameterType="Article">
+		UPDATE article_content
+			SET content=#{content}, file_path=#{filePath}
+			WHERE article_no=#{articleNo};
+	</update>
+	
+	<delete id="delete" parameterType="string">
+		DELETE FROM Article 
+			WHERE article_no=#{articleNo};
+	</delete>
+</mapper>

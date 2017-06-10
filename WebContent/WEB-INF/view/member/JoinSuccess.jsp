@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<p>${memberId}. 가입되었습니다.
+	<p>${member.memberId}. 가입되었습니다.
 </body>
-</html>
+</html> 

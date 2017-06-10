@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luuzun.article.model.ArticleDao">
+	<resultMap type="Article" id="ArticleResult">
+		<id 		 property="articleNo" 		column="article_no" />
+		<result 	 property="title" 			column="title" />
+		<result 	 property="articleRegDate" 	column="article_reg_date" />
+		<result 	 property="articleModDate" 	column="article_mod_date" />
+		<result 	 property="readCnt" 		column="read_cnt" />
+		<!-- <association property="writerId" 		resultMap="com.luuzun.MemberMapper.MemberResult"/> -->
+		<association property="writerId" column="writer_id" javaType="Member">
+			<id 	property="memberId" 		column="member_id" />
+			<result property="memberName" 		column="member_name" />
+			<result property="memberPassword" 	column="member_password" />
+			<result property="memberRegDate" 	column="member_reg_date" />
+		</association>
+	</resultMap>
+	
+	<insert id="insert" parameterType="Article">
+		INSERT INTO article
+			(writer_id, title, article_reg_date, article_mod_date, read_cnt)
+			VALUES(#{writerId.memberId}, #{title}, #{articleRegDate}, #{articleModDate}, #{readCnt})
+	</insert>
+
+	<select id="selectByAll" resultMap="ArticleResult">
+		SELECT * 
+			FROM article
+	</select>
+	
+	<select id="selectById" parameterType="String" resultMap="ArticleResult">
+		SELECT * 
+			FROM article
+			WHERE article_no=#{articleNo}
+	</select>
+	
+	<update id="update" parameterType="Article">
+		UPDATE article
+			SET writer_id=#{writerId.memberId}, title=#{title}, article_reg_date=#{articleRegDate}, article_mod_date=#{articleModDate}, read_cnt=#{readCnt}
+			WHERE article_no=#{articleNo};
+	</update>
+	
+	<delete id="delete" parameterType="String">
+		DELETE FROM Article 
+			WHERE article_no=#{articleNo};
+	</delete>
+	
+	<update id="updateCount" parameterType="String">
+		UPDATE article SET read_cnt = read_cnt+1 
+			WHERE article_no=#{articleNo};
+	</update>
+	
+	<select id="selectLastId" resultType="int">
+		SELECT DISTINCT last_insert_id() FROM article;
+	</select>
+</mapper>
