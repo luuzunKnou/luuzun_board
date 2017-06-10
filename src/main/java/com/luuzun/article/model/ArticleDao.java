@@ -9,7 +9,7 @@ public interface ArticleDao {
 	public List<Article> selectByAll();
 	public Article selectById(int articleNo); 
 	public int delete(String memberId); 
-	public int update(Member member);
+	public int update(Article article);
 	
 	public int updateCount(int articleNo); 
 	public int selectLastId();

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Show Article List</title>
 
 <style type="text/css">
 #divArticleList{ width:1200px; margin: 0 auto; }
@@ -39,8 +39,6 @@
 						<td>${item.getArticleRegDateString()}</td>
 						<td>${item.getArticleModDateString()}</td>
 						<td>${item.readCnt}</td>
-						<td><a href="modifyArticleProcess.do?id=${item.articleNo}">수정</a></td>
-						<td><a href="deleteArticleProcess.do?id=${item.articleNo}">삭제</a></td>
 					</tr>
 				</c:forEach>
 			</table>

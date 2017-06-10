@@ -20,16 +20,30 @@ import com.luuzun.util.MySqlSessionFactory;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-public class WriteArticleHandler implements CommandHandler{
+public class ModifyArticleHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		String memberId = (String) req.getSession().getAttribute("userAuth");
+		int articleNo= Integer.parseInt(req.getParameter("articleNo"));
+		
 		if(req.getMethod().equalsIgnoreCase("get")){
-			req.setAttribute("writeId", memberId);
-			return "/WEB-INF/view/article/writeArticleForm.jsp";
-		}else if(req.getMethod().equalsIgnoreCase("post")){
+			ArticleContent articleContent = new ArticleContent();
+			try (SqlSession session = MySqlSessionFactory.openSession();){
+				ArticleContentDao dao = session.getMapper(ArticleContentDao.class);
+				articleContent = dao.selectById(articleNo);
+				
+				if(!memberId.equals(articleContent.getArticle().getWriterId().getMemberId())){
+					req.setAttribute("isPermission", false);
+					return "readArticle.do";
+				}
+				req.setAttribute("articleContent", articleContent);
+			}
 			
+			req.setAttribute("articleContent", articleContent);
+			return "/WEB-INF/view/article/modifyArticleForm.jsp";
+			
+		}else if(req.getMethod().equalsIgnoreCase("post")){
 			/// 파일 upload를 위한 세팅
 			String uploadPath = req.getSession().getServletContext().getRealPath("upload");
 			File dir = new File(uploadPath);
@@ -62,18 +76,15 @@ public class WriteArticleHandler implements CommandHandler{
 				ArticleContentDao articleContentDao = session.getMapper(ArticleContentDao.class);
 				
 				Member member = memberDao.selectById(memberId);
-				Article article = new Article(member, title, new Date(), new Date());
-				System.out.println(article);
-				articleDao.insert(article);
-				article.setArticleNo(articleDao.selectLastId());
+				Article article = new Article(articleNo, member, title, new Date());
+				articleDao.update(article);
 				ArticleContent articleContent = new ArticleContent(article, content, fileName);
-				articleContentDao.insert(articleContent);
-				
+				articleContentDao.update(articleContent);
 				
 				session.commit();
 			}
 
-			return "/WEB-INF/view/article/writeArticleSuccess.jsp";
+			return "/WEB-INF/view/article/modifySuccess.jsp";
 		}
 		return null;
 	}

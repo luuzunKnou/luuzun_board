@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Change Password Success</title>
 </head>
 <body>
 	<p>암호를 변경했습니다</p>

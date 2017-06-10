@@ -6,36 +6,41 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Show Article Content</title>
 
 <style type="text/css">
-	#divArticleContent { width:1200px; margin: 0 auto; }
+	#divArticleContent { width:1200px; }
 	.attr {width:100px;}
 	.val {width:600px;}
 </style>
 
 </head>
 <body>
+<c:if test="${isPermission==false}">
+	<script type="text/javascript">
+		alert("권한이 없습니다.");
+	</script>
+</c:if>
 	<div id="divArticleContent">
 		<table border="1">
 			<tr>
-				<td class="attr">번호					</td>
-				<td class="val">${articleContent.article.articleNo }	</td>
+				<td class="attr">번호</td>
+				<td class="val">${articleContent.article.articleNo } </td>
 			</tr>
 			
 			<tr>
 				<td class="attr">작성자</td>
-				<td class="val">${articleContent.article.writerId.memberName }	</td>
+				<td class="val">${articleContent.article.writerId.memberName } </td>
 			</tr>
 			
 			<tr>
 				<td class="attr">제목</td>
-				<td class="val">${articleContent.article.title}</td>
+				<td class="val">${articleContent.article.title} </td>
 			</tr>
 			
 			<tr>
 				<td class="attr">내용</td>
-				<td class="val">${articleContent.content}</td>
+				<td class="val">${articleContent.content} </td>
 			</tr>
 			
 			<tr>
@@ -43,6 +48,10 @@
 				<td class="val"><a href="downloadProcess.do?filename=${articleContent.filePath}">${articleContent.filePath}</a>
 			</tr>
 		</table>
+		<button type="button" onclick="location.href='modifyArticle.do?articleNo=${articleContent.article.articleNo }'">
+			수정</button>
+		<button type="button" onclick="location.href='deleteArticle.do?articleNo=${articleContent.article.articleNo }'">
+			삭제</button>
 	</div>
 </body>
 </html>

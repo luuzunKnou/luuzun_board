@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Show Member List</title>
 
 <style type="text/css">
 #divMemberList {

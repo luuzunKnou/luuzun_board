@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Write Article Success</title>
 </head>
 <body>
 	<p>성공

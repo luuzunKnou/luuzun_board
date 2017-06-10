@@ -39,7 +39,7 @@
 	
 	<update id="update" parameterType="Article">
 		UPDATE article
-			SET writer_id=#{writerId.memberId}, title=#{title}, article_reg_date=#{articleRegDate}, article_mod_date=#{articleModDate}, read_cnt=#{readCnt}
+			SET writer_id=#{writerId.memberId}, title=#{title}, article_mod_date=#{articleModDate}
 			WHERE article_no=#{articleNo};
 	</update>
 	

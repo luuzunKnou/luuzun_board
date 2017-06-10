@@ -33,6 +33,14 @@ public class Article {
 		this.articleModDate = articleModDate;
 	}
 
+	public Article(int articleNo, Member writerId, String title, Date articleModDate) {
+		super();
+		this.articleNo = articleNo;
+		this.writerId = writerId;
+		this.title = title;
+		this.articleModDate = articleModDate;
+	}
+
 	public int getArticleNo() {
 		return articleNo;
 	}

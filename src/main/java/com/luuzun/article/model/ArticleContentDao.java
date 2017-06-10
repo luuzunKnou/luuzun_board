@@ -9,5 +9,5 @@ public interface ArticleContentDao {
 	public List<ArticleContent> selectByAll();
 	public ArticleContent selectById(int articleNo);
 	public int delete(String memberId);
-	public int update(Member member);
+	public int update(ArticleContent articleContent);
 }

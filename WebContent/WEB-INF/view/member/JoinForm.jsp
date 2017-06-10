@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Join Form</title>
 <link rel="stylesheet" type="text/css" href="css/common.css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -51,7 +51,7 @@
 		
 		$("form[name='f1']").submit(function() {
 			if($isValidData && $isValidId){
-				alert('회원 가입에 성공하셧습니다.');
+				alert('가입되었습니다.');
 			} else {
 				alert('Invalid Data  '+$isValidData+':'+$isValidId);
 				return false;			
