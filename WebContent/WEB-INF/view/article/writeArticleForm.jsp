@@ -24,6 +24,8 @@
 			<input type="file" name="fileName">
 		<p>
 			<input type="submit" value="추가">
+			<input type="reset" value="다시작성">
+			<input type='button' value="돌아가기" onClick='history.back()'> 
 		</fieldset>
 	</form>
 </body>

@@ -43,7 +43,7 @@
 			WHERE article_no=#{articleNo};
 	</update>
 	
-	<delete id="delete" parameterType="String">
+	<delete id="delete" parameterType="int">
 		DELETE FROM Article 
 			WHERE article_no=#{articleNo};
 	</delete>

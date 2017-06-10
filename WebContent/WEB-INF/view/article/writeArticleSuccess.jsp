@@ -7,6 +7,9 @@
 <title>Write Article Success</title>
 </head>
 <body>
-	<p>성공
+	<script type="text/javascript">
+		alert("게시물이 등록되었습니다.");
+		location.href="showArticleList.do";
+	</script>
 </body>
 </html>

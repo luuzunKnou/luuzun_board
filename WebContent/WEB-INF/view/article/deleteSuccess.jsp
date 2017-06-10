@@ -8,8 +8,8 @@
 </head>
 <body>
 	<script type="text/javascript">
-		alert("수정되었습니다.");
-		location.href="readArticle.do?articleNo=${articleNo}";
+		alert("삭제되었습니다.");
+		location.href="showArticleList.do";
 	</script>
 </body>
 </html> 

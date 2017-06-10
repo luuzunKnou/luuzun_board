@@ -16,14 +16,12 @@ public class ShowArticleListHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		List<Article> articleList;
-
 		try (SqlSession session = MySqlSessionFactory.openSession();){
 			ArticleDao dao = session.getMapper(ArticleDao.class);
-			articleList = dao.selectByAll();
-			
-			System.out.println(articleList.get(0));
+			List<Article> articleList = dao.selectByAll();
 			req.setAttribute("articleList", articleList);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return "/WEB-INF/view/article/showArticleList.jsp";
 	}

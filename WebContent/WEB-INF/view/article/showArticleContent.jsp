@@ -30,7 +30,7 @@
 			
 			<tr>
 				<td class="attr">작성자</td>
-				<td class="val">${articleContent.article.writerId.memberName } </td>
+				<td class="val">${articleContent.article.writerId.memberId } </td>
 			</tr>
 			
 			<tr>
@@ -50,8 +50,10 @@
 		</table>
 		<button type="button" onclick="location.href='modifyArticle.do?articleNo=${articleContent.article.articleNo }'">
 			수정</button>
-		<button type="button" onclick="location.href='deleteArticle.do?articleNo=${articleContent.article.articleNo }'">
+		<button type="button" onclick="location.href='deleteArticle.do?articleNo=${articleContent.article.articleNo }&memberId=${articleContent.article.writerId.memberId }'">
 			삭제</button>
+		<button type="button" onclick="history.back()">
+			돌아가기</button>	
 	</div>
 </body>
 </html>

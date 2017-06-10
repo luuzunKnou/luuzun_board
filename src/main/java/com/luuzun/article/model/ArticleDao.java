@@ -8,7 +8,7 @@ public interface ArticleDao {
 	public int insert(Article article);
 	public List<Article> selectByAll();
 	public Article selectById(int articleNo); 
-	public int delete(String memberId); 
+	public int delete(int articleNo); 
 	public int update(Article article);
 	
 	public int updateCount(int articleNo); 

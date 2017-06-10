@@ -47,11 +47,11 @@
 	<update id="update" parameterType="Article">
 		UPDATE article_content
 			SET content=#{content}, file_path=#{filePath}
-			WHERE article_no=#{articleNo};
+			WHERE article_no=#{article.articleNo};
 	</update>
 	
-	<delete id="delete" parameterType="string">
+	<delete id="delete" parameterType="int">
 		DELETE FROM Article 
-			WHERE article_no=#{articleNo};
+			WHERE article_no=#{article.articleNo};
 	</delete>
 </mapper>

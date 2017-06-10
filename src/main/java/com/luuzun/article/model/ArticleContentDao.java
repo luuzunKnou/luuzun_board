@@ -8,6 +8,6 @@ public interface ArticleContentDao {
 	public int insert(ArticleContent articleContent);
 	public List<ArticleContent> selectByAll();
 	public ArticleContent selectById(int articleNo);
-	public int delete(String memberId);
+	public int delete(int articleNo);
 	public int update(ArticleContent articleContent);
 }

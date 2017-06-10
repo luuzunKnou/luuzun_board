@@ -7,6 +7,9 @@
 <title>Change Password Success</title>
 </head>
 <body>
-	<p>암호를 변경했습니다</p>
+	<script type="text/javascript">
+		alert("비밀번호가 변경되었습니다.");
+		location.href="index.jsp";
+	</script>
 </body>
 </html>

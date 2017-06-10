@@ -25,9 +25,9 @@ public class ModifyArticleHandler implements CommandHandler{
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		String memberId = (String) req.getSession().getAttribute("userAuth");
-		int articleNo= Integer.parseInt(req.getParameter("articleNo"));
-		
+
 		if(req.getMethod().equalsIgnoreCase("get")){
+			int articleNo= Integer.parseInt(req.getParameter("articleNo"));
 			ArticleContent articleContent = new ArticleContent();
 			try (SqlSession session = MySqlSessionFactory.openSession();){
 				ArticleContentDao dao = session.getMapper(ArticleContentDao.class);
@@ -65,10 +65,16 @@ public class ModifyArticleHandler implements CommandHandler{
 				
 				key = (String)files.nextElement();
 				fileName = multi.getFilesystemName(key);
+				
+				if(fileName == null){ //수정할 파일이 없다면 이전 파일이름을 유지
+					System.out.println(req.getParameter("oldFileName"));
+					fileName=multi.getParameter("oldFileName");
+				}
+				
 				System.out.println(key + " = " + fileName);
 				req.setAttribute("fileName", fileName);
 				//
-				
+				int articleNo= Integer.parseInt(multi.getParameter("articleNo"));
 				String title = multi.getParameter("title");
 				String content = multi.getParameter("content");
 				MemberDao memberDao = session.getMapper(MemberDao.class);
@@ -80,10 +86,9 @@ public class ModifyArticleHandler implements CommandHandler{
 				articleDao.update(article);
 				ArticleContent articleContent = new ArticleContent(article, content, fileName);
 				articleContentDao.update(articleContent);
-				
+				req.setAttribute("articleNo", articleNo);
 				session.commit();
 			}
-
 			return "/WEB-INF/view/article/modifySuccess.jsp";
 		}
 		return null;
