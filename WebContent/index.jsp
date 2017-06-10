@@ -5,21 +5,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Welcome to luuzun Board</title>
+<link rel="stylesheet" type="text/css" href="css/common.css">
+
+<link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
+<script	src="https://code.jquery.com/jquery-3.1.1.min.js"
+	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+	crossorigin="anonymous"></script>
+<script src="semantic/semantic.min.js"></script>
+
 </head>
 <body>
-	<c:if test="${!empty userAuth}">
-		${userAuth }님 반갑습니다.
-		<a href="writeArticle.do">게시글 작성</a>
-		<a href="showArticleList.do">게시글 보기</a>
-		<a href="logout.do">로그아웃</a>
-		<a href="changePassword.do">비밀번호 변경</a>
-	</c:if>
-	
-	<c:if test="${empty userAuth}">
-		<a href="join.do">회원가입</a>
-		<a href="login.do">로그인</a>
-		<a href="showMemberList.do">회원보기</a>
-	</c:if>
+<div id ="wrap">
+	<jsp:include page="WEB-INF/layout/header.jsp"></jsp:include>
+	<p id="pMainImg"><img src="image/bg.jpg" id="mainImg"></p>
+	<jsp:include page="WEB-INF/layout/footer.jsp"></jsp:include>
+</div>
 </body>
 </html>

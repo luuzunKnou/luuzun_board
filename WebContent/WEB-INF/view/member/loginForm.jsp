@@ -8,6 +8,11 @@
 <meta charset="UTF-8">
 <title>Login</title>
 <link rel="stylesheet" type="text/css" href="css/common.css">
+<link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
+<script	src="https://code.jquery.com/jquery-3.1.1.min.js"
+	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+	crossorigin="anonymous"></script>
+<script src="semantic/semantic.min.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/common.js"></script>
@@ -28,6 +33,8 @@
 
 </head>
 <body>
+<div id ="wrap">
+	<jsp:include page="../../layout/header.jsp"></jsp:include>
 	<form name="f1" action="login.do" method="post">
 		<fieldset>
 		<p><label> 아이디 </label> 
@@ -52,5 +59,7 @@
 		<c:if test="${notMatchPassword}">
 		<p class="error2"> 비밀번호가 일치하지 않습니다.
 	</c:if>
+	<jsp:include page="../../layout/footer.jsp"></jsp:include>
+	</div>
 </body>
 </html>

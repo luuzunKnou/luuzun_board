@@ -7,20 +7,27 @@
 <head>
 <meta charset="UTF-8">
 <title>Show Article Content</title>
-
+<link rel="stylesheet" type="text/css" href="css/common.css">
 <style type="text/css">
 	#divArticleContent { width:1200px; }
 	.attr {width:100px;}
 	.val {width:600px;}
 </style>
+<link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
+<script	src="https://code.jquery.com/jquery-3.1.1.min.js"
+	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+	crossorigin="anonymous"></script>
+<script src="semantic/semantic.min.js"></script>
 
 </head>
 <body>
-<c:if test="${isPermission==false}">
-	<script type="text/javascript">
-		alert("권한이 없습니다.");
-	</script>
-</c:if>
+<div id ="wrap">
+	<jsp:include page="../../layout/header.jsp"></jsp:include>
+	<c:if test="${isPermission==false}">
+		<script type="text/javascript">
+			alert("권한이 없습니다.");
+		</script>
+	</c:if>
 	<div id="divArticleContent">
 		<table border="1">
 			<tr>
@@ -55,5 +62,7 @@
 		<button type="button" onclick="history.back()">
 			돌아가기</button>	
 	</div>
+	<jsp:include page="../../layout/footer.jsp"></jsp:include>
+</div>
 </body>
 </html>

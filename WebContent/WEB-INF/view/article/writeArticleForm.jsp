@@ -9,8 +9,16 @@
 <style type="text/css">
 	fieldset {width: 700px;}
 </style>
+<link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
+<script	src="https://code.jquery.com/jquery-3.1.1.min.js"
+	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+	crossorigin="anonymous"></script>
+<script src="semantic/semantic.min.js"></script>
+
 </head>
 <body>
+<div id ="wrap">
+	<jsp:include page="../../layout/header.jsp"></jsp:include>
 	<form action="writeArticle.do" method="post" name="f1" enctype="multipart/form-data">
 		<fieldset><legend>게시물 작성</legend>
 		<p>
@@ -28,5 +36,7 @@
 			<input type='button' value="돌아가기" onClick='history.back()'> 
 		</fieldset>
 	</form>
+	<jsp:include page="../../layout/footer.jsp"></jsp:include>
+</div>
 </body>
 </html>

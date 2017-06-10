@@ -7,16 +7,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Show Member List</title>
-
+<link rel="stylesheet" type="text/css" href="css/common.css">
 <style type="text/css">
 #divMemberList {
 	width: 900px;
 	margin: 0 auto;
 }
 </style>
+<link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
+<script	src="https://code.jquery.com/jquery-3.1.1.min.js"
+	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+	crossorigin="anonymous"></script>
+<script src="semantic/semantic.min.js"></script>
 
 </head>
 <body>
+<div id ="wrap">
+	<jsp:include page="../../layout/header.jsp"></jsp:include>
 	<div id=divMemberList>
 		<c:if test="${memberList.size() == 0}">
 			가입된 회원이 없습니다.
@@ -43,6 +50,8 @@
 				</c:forEach>
 			</table>
 		</c:if>
+	</div>
+	<jsp:include page="../../layout/footer.jsp"></jsp:include>
 	</div>
 </body>
 </html>
