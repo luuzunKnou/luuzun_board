@@ -60,10 +60,6 @@ public class Article {
 	public Date getArticleRegDate() {
 		return articleRegDate;
 	}
-	
-	public String getArticleRegDateString() {
-		return simpleDateFormat.format(articleRegDate);
-	}
 
 	public void setArticleRegDate(Date articleRegDate) {
 		this.articleRegDate = articleRegDate;
@@ -71,10 +67,6 @@ public class Article {
 
 	public Date getArticleModDate() {
 		return articleModDate;
-	}
-	
-	public String getArticleModDateString() {
-		return simpleDateFormat.format(articleModDate);
 	}
 	
 	public void setArticleModDate(Date articleModDate) {
@@ -87,6 +79,22 @@ public class Article {
 
 	public void setReadCnt(int readCnt) {
 		this.readCnt = readCnt;
+	}
+	
+	public String getWriterID(){
+		return writerId.getMemberId();
+	}
+	
+	public String getWriterName(){
+		return writerId.getMemberName();
+	}
+	
+	public String getArticleModDateString() {
+		return simpleDateFormat.format(articleModDate);
+	}
+	
+	public String getArticleRegDateString() {
+		return simpleDateFormat.format(articleRegDate);
 	}
 
 	@Override

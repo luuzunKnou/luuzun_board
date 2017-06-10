@@ -12,22 +12,23 @@
 <script src="js/common.js"></script>
 <script type="text/javascript">
 	$(function(){
+		var $isValidData = false;
+		var $isValidId = false;
+
 		$(".formTag").blur(function() {
 			$("span[class='errorMsg']").css("display","none");
+			//공백 여부 체크
 			if(checkInputEmpty($("input[name]")) == false){
-	            return false;
-			}
-	         
+			} 			
 			//패스워드 일치 여부 체크
-			if($("input[name='memberCheckPassword']").val() != $("input[name='memberPassword']").val()){
+			else if($("input[name='memberCheckPassword']").val() != $("input[name='memberPassword']").val()){
 				var $next = $("input[name='memberCheckPassword']").nextAll(".errorMsg");
 				$next.css("display","block");
-				return false;
+			} else {
+				 $isValidData = true;
 			}
 		})
-	});
-	
-	$(function(){
+		
 		$(".idForm").blur(function() {
 			//입력 ID로 member 정보를 받음
 			$.ajax({
@@ -40,13 +41,21 @@
 					var $next = $("input[name='memberId']").nextAll(".duplicateIdErrorMsg");
 					if(data.isDuplicateId=="false") {
 						$next.css("display","none");
-						$("input[type='submit']").;
+						$isValidId = true;
 					} else {				
 						$next.css("display","block");
-						$("input[type='submit']").disable;
 					}
 				}
 			})	
+		})
+		
+		$("form[name='f1']").submit(function() {
+			if($isValidData && $isValidId){
+				alert('회원 가입에 성공하셧습니다.');
+			} else {
+				alert('Invalid Data  '+$isValidData+':'+$isValidId);
+				return false;			
+			}
 		})
 	});
 		

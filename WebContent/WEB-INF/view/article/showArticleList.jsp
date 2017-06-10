@@ -32,15 +32,15 @@
 				</tr>
 				<c:forEach var="item" items="${articleList}">
 					<tr>
-						<td>${item.number }</td>
-						<td>${item.id }</td>
-						<td>${item.name }</td>
-						<td><a href="read.do?articleNo=${item.number}">${item.title}</a></td>
-						<td>${item.regDate}</td>
-						<td>${item.modifiedDate}</td>
-						<td>${item.readCount}</td>
-						<td><a href="modifyProcess.do?id=${item.number}">수정</a></td>
-						<td><a href="deleteProcess.do?id=${item.number}">삭제</a></td>
+						<td>${item.articleNo }</td>
+						<td>${item.writerId.memberId }</td>
+						<td>${item.writerId.memberName }</td>
+						<td><a href="readArticle.do?articleNo=${item.articleNo}">${item.title}</a></td>
+						<td>${item.getArticleRegDateString()}</td>
+						<td>${item.getArticleModDateString()}</td>
+						<td>${item.readCnt}</td>
+						<td><a href="modifyArticleProcess.do?id=${item.articleNo}">수정</a></td>
+						<td><a href="deleteArticleProcess.do?id=${item.articleNo}">삭제</a></td>
 					</tr>
 				</c:forEach>
 			</table>

@@ -21,6 +21,6 @@ public class ReadArticleHandler implements CommandHandler{
 			articleContent = dao.selectById(articleId);
 			req.setAttribute("articleContent", articleContent);
 		}
-		return "/WEB-INF/view/showArticleContent.jsp";
+		return "/WEB-INF/view/article/showArticleContent.jsp";
 	}
 }

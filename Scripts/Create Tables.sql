@@ -48,7 +48,15 @@ INSERT INTO member
 VALUES('ASOR', '신진욱', '1234', CURDATE());
 
 SELECT * FROM MEMBER;
-SELECT * FROM article;
+
+
+
+SELECT * FROM article JOIN MEMBER ON article.writer_id = MEMBER.member_id;
+SELECT * FROM article_content 
+	JOIN article ON article_content.article_no = article.article_no
+	JOIN MEMBER ON article.writer_id = MEMBER.member_id
+	WHERE article.article_no=1;
+
 SELECT * FROM article_content;
 INSERT INTO article	(writer_id, title, article_reg_date, article_mod_date)
 			VALUES("ASOR", "ASOR", CURDATE(), CURDATE());

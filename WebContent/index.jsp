@@ -11,7 +11,7 @@
 	<c:if test="${!empty userAuth}">
 		${userAuth }님 반갑습니다.
 		<a href="writeArticle.do">게시글 작성</a>
-		<a href="showArticlelist.do">게시글 보기</a>
+		<a href="showArticleList.do">게시글 보기</a>
 		<a href="logout.do">로그아웃</a>
 		<a href="changePassword.do">비밀번호 변경</a>
 	</c:if>

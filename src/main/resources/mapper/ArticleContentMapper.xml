@@ -6,8 +6,25 @@
 	<resultMap type="articleContent" id="ArticleContentResult">
 		<result 		property="content" 	column="content" />
 		<result 		property="filePath" column="file_path" />
-		<association 	property="article" 	resultMap="com.luuzun.ArticleMapper.ArticleResult"/>
+<!-- 	<association 	property="article" 	resultMap="com.luuzun.ArticleMapper.ArticleResult"/>-->		
+		<association 	property="article" column="article" javaType="Article">
+			<id 		 property="articleNo" 		column="article_no" />
+			<result 	 property="title" 			column="title" />
+			<result 	 property="articleRegDate" 	column="article_reg_date" />
+			<result 	 property="articleModDate" 	column="article_mod_date" />
+			<result 	 property="readCnt" 		column="read_cnt" />
+			<!-- <association property="writerId" 		column="writer_id"
+						resultMap="mapper.MemberMapper.MemberResult" /> -->
+			<association property="writerId" column="writer_id" javaType="Member">
+				<id 	property="memberId" 		column="member_id" />
+				<result property="memberName" 		column="member_name" />
+				<result property="memberPassword" 	column="member_password" />
+				<result property="memberRegDate" 	column="member_reg_date" />
+			</association>
+		</association>	
+	
 	</resultMap>
+	
 	<insert id="insert" parameterType="Article">
 		INSERT INTO article_content
 			(article_no, content, file_path)
@@ -15,14 +32,16 @@
 	</insert>
 
 	<select id="selectByAll" resultMap ="ArticleContentResult">
-		SELECT * 
-			FROM article_content
+		SELECT * FROM article_content 
+			JOIN article ON article_content.article_no = article.article_no
+			JOIN MEMBER ON article.writer_id = MEMBER.member_id
 	</select>
 	
-	<select id="selectById" parameterType="string" resultMap ="ArticleContentResult">
-		SELECT * 
-			FROM article_content
-			WHERE article_no=#{articleNo}
+	<select id="selectById" parameterType="int" resultMap ="ArticleContentResult">
+		SELECT * FROM article_content 
+			JOIN article ON article_content.article_no = article.article_no
+			JOIN MEMBER ON article.writer_id = MEMBER.member_id
+			WHERE article.article_no=#{article.articleNo}
 	</select>
 	
 	<update id="update" parameterType="Article">

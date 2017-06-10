@@ -20,6 +20,9 @@
 			<label>내용</label><textarea rows="30" cols="60" name="content"></textarea>
 			<span class="errorMsg"> 내용을 입력하세요 </span> 
 		<p>
+			<label>파일 업로드</label>
+			<input type="file" name="title">
+		<p>
 			<input type="submit" value="추가">
 		</fieldset>
 	</form>

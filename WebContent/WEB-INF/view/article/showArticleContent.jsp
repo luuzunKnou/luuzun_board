@@ -19,18 +19,18 @@
 	<div id="divArticleContent">
 		<table border="1">
 			<tr>
-				<td class="attr">번호				</td>
-				<td class="val">${article.number }	</td>
+				<td class="attr">번호					</td>
+				<td class="val">${articleContent.article.articleNo }	</td>
 			</tr>
 			
 			<tr>
 				<td class="attr">작성자</td>
-				<td class="val">${article.name}</td>
+				<td class="val">${articleContent.article.writerId.memberName }	</td>
 			</tr>
 			
 			<tr>
 				<td class="attr">제목</td>
-				<td class="val">${article.title}</td>
+				<td class="val">${articleContent.article.title}</td>
 			</tr>
 			
 			<tr>

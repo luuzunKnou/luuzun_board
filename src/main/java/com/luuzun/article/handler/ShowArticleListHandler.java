@@ -21,8 +21,10 @@ public class ShowArticleListHandler implements CommandHandler{
 		try (SqlSession session = MySqlSessionFactory.openSession();){
 			ArticleDao dao = session.getMapper(ArticleDao.class);
 			articleList = dao.selectByAll();
+			
+			System.out.println(articleList.get(0));
 			req.setAttribute("articleList", articleList);
 		}
-		return "/WEB-INF/view/showArticleList.jsp";
+		return "/WEB-INF/view/article/showArticleList.jsp";
 	}
 }

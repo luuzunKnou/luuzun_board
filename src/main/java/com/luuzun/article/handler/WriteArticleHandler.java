@@ -1,6 +1,8 @@
 package com.luuzun.article.handler;
 
+import java.io.File;
 import java.util.Date;
+import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +17,8 @@ import com.luuzun.controller.CommandHandler;
 import com.luuzun.member.model.Member;
 import com.luuzun.member.model.MemberDao;
 import com.luuzun.util.MySqlSessionFactory;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class WriteArticleHandler implements CommandHandler{
 
@@ -42,11 +46,48 @@ public class WriteArticleHandler implements CommandHandler{
 				ArticleContent articleContent = new ArticleContent(article, content, "");
 				articleContentDao.insert(articleContent);
 				
+				postProcess(req, res);
+				
 				session.commit();
 			}
 
 			return "/WEB-INF/view/article/writeArticleSuccess.jsp";
 		}
 		return null;
+	}
+	
+	@SuppressWarnings("unused")
+	private String postProcess(HttpServletRequest req, HttpServletResponse res){
+		//upload 폴더 만들기
+		@SuppressWarnings("deprecation")
+		String uploadPath = req.getRealPath("upload");
+		File dir = new File(uploadPath);
+		if(dir.exists() == false)
+			dir.mkdirs();
+		System.out.println(uploadPath);
+
+		int size = 1024*1024*10;
+		
+		try {
+			MultipartRequest multi = new MultipartRequest(
+					req,
+					uploadPath,
+					size,
+					"UTF-8",
+					new DefaultFileRenamePolicy());
+			Enumeration<?> files = multi.getFileNames();
+			String key="";
+			String filename="";
+			
+			key = (String)files.nextElement();
+			filename = multi.getFilesystemName(key);
+			System.out.println(key + " = " + filename);
+			
+			req.setAttribute("file", filename);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "fileUploadProcess.jsp";
 	}
 }

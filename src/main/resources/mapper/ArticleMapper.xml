@@ -3,13 +3,14 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.luuzun.article.model.ArticleDao">
-	<resultMap type="Article" id="ArticleResult">
+	<resultMap type="article" id="ArticleResult">
 		<id 		 property="articleNo" 		column="article_no" />
 		<result 	 property="title" 			column="title" />
 		<result 	 property="articleRegDate" 	column="article_reg_date" />
 		<result 	 property="articleModDate" 	column="article_mod_date" />
 		<result 	 property="readCnt" 		column="read_cnt" />
-		<!-- <association property="writerId" 		resultMap="com.luuzun.MemberMapper.MemberResult"/> -->
+		<!-- <association property="writerId" 		column="writer_id"
+					resultMap="mapper.MemberMapper.MemberResult" /> -->
 		<association property="writerId" column="writer_id" javaType="Member">
 			<id 	property="memberId" 		column="member_id" />
 			<result property="memberName" 		column="member_name" />
@@ -27,6 +28,7 @@
 	<select id="selectByAll" resultMap="ArticleResult">
 		SELECT * 
 			FROM article
+			JOIN MEMBER ON article.writer_id = MEMBER.member_id;
 	</select>
 	
 	<select id="selectById" parameterType="String" resultMap="ArticleResult">

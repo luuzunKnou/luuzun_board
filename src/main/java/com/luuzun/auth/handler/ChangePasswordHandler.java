@@ -26,14 +26,8 @@ public class ChangePasswordHandler implements CommandHandler{
 			String oldPassword = req.getParameter("oldPassword");
 			String newPassword = req.getParameter("newPassword");
 			
-			Connection con = null;
-			
-			try{
-				SqlSession session= null;
-				session = MySqlSessionFactory.openSession();
+			try(SqlSession session = MySqlSessionFactory.openSession();){
 				MemberDao dao = session.getMapper(MemberDao.class);
-				
-				con = ConnectionProvider.getConnection();
 				Member member = dao.selectById(memberId);
 				
 				if(member.getMemberPassword().equals(oldPassword)==false){
@@ -44,8 +38,6 @@ public class ChangePasswordHandler implements CommandHandler{
 				dao.updatePassword(new Member(memberId, newPassword));
 				session.commit();
 				return "/WEB-INF/view/member/changePasswordSuccess.jsp";
-			}finally {
-				JdbcUtil.close(con);
 			}
 		}
 		return null;

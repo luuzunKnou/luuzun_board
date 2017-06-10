@@ -23,11 +23,16 @@
 
 </head>
 <body>
+	<c:if test="${notMatchPassword}">
+		<script type="text/javascript">
+			alert("비밀번호가 일치하지 않습니다.");
+		</script>
+	</c:if>
 	<form name="f1" action="changePassword.do" method="post">
 		<fieldset>
 		<p><label> 현재 비밀번호 </label> 
 			<input type="password" name="oldPassword" value="">
-			<span class="errorMsg">비밀번호가 일치하지 않습니다</span>
+			<span class="errorMsg">비밀번호를 입력해 주세요</span>
 		
 		<p>
 			<label> 새 비밀번호 </label> 
