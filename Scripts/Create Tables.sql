@@ -1,4 +1,5 @@
--- DROP DATABASE luuzun_board;
+-- 
+DROP DATABASE luuzun_board;
 
 CREATE DATABASE luuzun_board;
 USE luuzun_board;
@@ -54,14 +55,14 @@ SELECT * FROM MEMBER;
 SELECT * FROM article JOIN MEMBER ON article.writer_id = MEMBER.member_id;
 SELECT * FROM article_content 
 	JOIN article ON article_content.article_no = article.article_no
-	JOIN MEMBER ON article.writer_id = MEMBER.member_id
-	WHERE article.article_no=1;
+	JOIN MEMBER ON article.writer_id = MEMBER.member_id;
 
 SELECT * FROM article_content;
 INSERT INTO article	(writer_id, title, article_reg_date, article_mod_date)
 			VALUES("ASOR", "ASOR", CURDATE(), CURDATE());
+			
 select distinct last_insert_id() from article;
 
-	INSERT INTO article_content
-			(article_no, content, file_path)
-			VALUES(1, "String", "")
+INSERT INTO article_content
+		(article_no, content, file_path)
+		VALUES(1, "String", "")

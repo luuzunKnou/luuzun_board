@@ -11,7 +11,7 @@
 </style>
 </head>
 <body>
-	<form action="writeArticle.do" method="post" name="f1">
+	<form action="writeArticle.do" method="post" name="f1" enctype="multipart/form-data">
 		<fieldset><legend>회원가입</legend>
 		<p>
 			<label>제목</label><input type="text" name="title">
@@ -21,7 +21,7 @@
 			<span class="errorMsg"> 내용을 입력하세요 </span> 
 		<p>
 			<label>파일 업로드</label>
-			<input type="file" name="title">
+			<input type="file" name="fileName">
 		<p>
 			<input type="submit" value="추가">
 		</fieldset>

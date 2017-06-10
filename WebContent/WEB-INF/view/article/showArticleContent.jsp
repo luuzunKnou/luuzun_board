@@ -37,6 +37,11 @@
 				<td class="attr">내용</td>
 				<td class="val">${articleContent.content}</td>
 			</tr>
+			
+			<tr>
+				<td class="attr">파일</td>
+				<td class="val"><a href="downloadProcess.do?filename=${articleContent.filePath}">${articleContent.filePath}</a>
+			</tr>
 		</table>
 	</div>
 </body>

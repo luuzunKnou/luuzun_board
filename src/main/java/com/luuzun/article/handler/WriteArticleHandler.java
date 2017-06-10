@@ -29,24 +29,46 @@ public class WriteArticleHandler implements CommandHandler{
 			req.setAttribute("writeId", memberId);
 			return "/WEB-INF/view/article/writeArticleForm.jsp";
 		}else if(req.getMethod().equalsIgnoreCase("post")){
+			
+			/// 파일 upload를 위한 세팅
+			String uploadPath = req.getSession().getServletContext().getRealPath("upload");
+			File dir = new File(uploadPath);
+			if(dir.exists() == false)
+				dir.mkdirs();
+			int size = 1024*1024*10;
+			String key="";
+			String fileName="";
+			System.out.println(uploadPath);
+			///
+			
 			try(SqlSession session = MySqlSessionFactory.openSession();){
+
+				//파일 저장
+				MultipartRequest multi = new MultipartRequest(
+						req, uploadPath, size, "UTF-8",
+						new DefaultFileRenamePolicy());
+				Enumeration<?> files = multi.getFileNames();
 				
-				String title = req.getParameter("title");
-				String content = req.getParameter("content");
+				key = (String)files.nextElement();
+				fileName = multi.getFilesystemName(key);
+				System.out.println(key + " = " + fileName);
+				req.setAttribute("fileName", fileName);
+				//
 				
+				String title = multi.getParameter("title");
+				String content = multi.getParameter("content");
 				MemberDao memberDao = session.getMapper(MemberDao.class);
 				ArticleDao articleDao = session.getMapper(ArticleDao.class);
 				ArticleContentDao articleContentDao = session.getMapper(ArticleContentDao.class);
-
+				
 				Member member = memberDao.selectById(memberId);
 				Article article = new Article(member, title, new Date(), new Date());
+				System.out.println(article);
 				articleDao.insert(article);
 				article.setArticleNo(articleDao.selectLastId());
-	
-				ArticleContent articleContent = new ArticleContent(article, content, "");
+				ArticleContent articleContent = new ArticleContent(article, content, fileName);
 				articleContentDao.insert(articleContent);
 				
-				postProcess(req, res);
 				
 				session.commit();
 			}
@@ -54,40 +76,5 @@ public class WriteArticleHandler implements CommandHandler{
 			return "/WEB-INF/view/article/writeArticleSuccess.jsp";
 		}
 		return null;
-	}
-	
-	@SuppressWarnings("unused")
-	private String postProcess(HttpServletRequest req, HttpServletResponse res){
-		//upload 폴더 만들기
-		@SuppressWarnings("deprecation")
-		String uploadPath = req.getRealPath("upload");
-		File dir = new File(uploadPath);
-		if(dir.exists() == false)
-			dir.mkdirs();
-		System.out.println(uploadPath);
-
-		int size = 1024*1024*10;
-		
-		try {
-			MultipartRequest multi = new MultipartRequest(
-					req,
-					uploadPath,
-					size,
-					"UTF-8",
-					new DefaultFileRenamePolicy());
-			Enumeration<?> files = multi.getFileNames();
-			String key="";
-			String filename="";
-			
-			key = (String)files.nextElement();
-			filename = multi.getFilesystemName(key);
-			System.out.println(key + " = " + filename);
-			
-			req.setAttribute("file", filename);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return "fileUploadProcess.jsp";
 	}
 }
