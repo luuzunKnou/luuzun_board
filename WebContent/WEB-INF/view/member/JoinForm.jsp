@@ -6,12 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Join Form</title>
-<link rel="stylesheet" type="text/css" href="css/common.css">
 <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
 <script	src="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 	crossorigin="anonymous"></script>
 <script src="semantic/semantic.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/common.css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/common.js"></script>
@@ -70,6 +70,7 @@
 <body>
 <div id ="wrap">
 	<jsp:include page="../../layout/header.jsp"></jsp:include>
+	<div id="article">
 	<form action="join.do" method="post" name="f1">
 		<fieldset>
 			<legend>회원가입</legend>
@@ -98,6 +99,7 @@
 	<c:if test="${duplicateId == true}">
 		<p class="errorMsgByID">이미 사용중인 아이디입니다.
 	</c:if>
+	</div>
 	<jsp:include page="../../layout/footer.jsp"></jsp:include>
 </div>
 </body>

@@ -1,14 +1,14 @@
 @CHARSET "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Julius+Sans+One');
+@import url('https://fonts.googleapis.com/css?family=Abel');
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
 *{padding:0; margin:0;}
-body{background: white; }
+body {background-image: url("../image/bodyBg.jpg;"); padding: 50px;}
 body,html {height:100%; }
 a{color: black; text-decoration: none;}
 ul {list-style: none;}
-#wrap {width: 1100px;  margin: auto;}
-fieldset { width: 350px; border: 1px solid gray; margin: 0 auto; }
-label { padding-left: 10px; width: 120px; float: left; }
-p:LAST-CHILD { text-align: center }
+#wrap {width: 1100px;  margin: auto; background-color: rgba(0,0,0,0.4);}
 #pMainImg { text-align: center;}
 #mainImg {width: 700px;}
 
@@ -23,16 +23,61 @@ span.errorMsg { font-size: 12px; color: red; display: none; margin-left: 131px; 
 
 
 /* Header */
-header h1 {color:#3498db; margin:20px; text-align: center;}
-nav {width: 100%; height: 50px; background-color: #3498db; margin: 20px 0px; clear: both;}
-nav ul li {float: left; width:25%;}
-nav ul li a {color:white; padding-left: 80px; line-height: 50px; height: 50px; font-weight: bold;}
-nav ul li a:HOVER {text-decoration: underline;}
+#divTitle {padding:0px 60px 100px 0; width:1100px;}
+p#title {color:white; text-align: right; display:inline; float:right;
+	font-size: 50px; font-weight: normal;
+	font-family: 'Julius Sans One', sans-serif;
+	border-bottom: solid 2px white;
+	}
+#loginDiv {padding: 20px;}
+#loginDiv a {color: white;}
+
+nav {width: 100%; background-color: rgba(0,0,0,0.4);}
+nav a {color: white;}
+nav ul {margin: 0 100px; }  
+nav ul li {border-left: 2px solid rgba(255,255,255,0.5); display: inline-block;
+	width: 30%; height: 30px;}
+nav ul li:LAST-CHILD {border-right: 2px solid rgba(255,255,255,0.5);}
+nav ul li p {text-align: center; line-height: 30px;}
+nav ul li p a:HOVER {color: rgb(230, 210, 170);}
 /**********/
 
 /* footer */
-footer {width: 100%; height: 60px; background-color: #3498db; 
+footer {width: 100%; height: 40px; background-color: rgba(0,0,0,0.4);
 		margin: 20px 0px; color:white; text-align: center;}
-footer #p1 {font-size: 15px; padding-top: 10px;}
-footer #p2 {}
+footer #p2 {font-size: 15px; padding-top: 10px;
+font-family: 'Abel', sans-serif;
+}
 /**********/
+
+/* article */
+#article {height: 550px; padding-top: 20px; }
+table {width: 1000px; margin: auto; background-color: rgba(0,0,0,0.4);}
+table td{border: 2px solid rgba(255,255,255,0.1); padding:3px 10px; color: white;}
+table td a{color: white;}
+table td a:HOVER{color: rgb(230, 210, 170);}
+
+#tdNo		{width: 50px; 	text-align: center;} 
+#tdId		{width: 70px;	text-align: center;}
+#tdName		{width: 70px;	text-align: center;}
+#tdTitle	{width: 500px;	}
+#tdRegTime	{width: 100px;	text-align: center;}
+#tdModTime	{width: 100px;	text-align: center;}
+#tdCnt		{width: 50px;	text-align: center;}
+
+#memberTable {width: 500px; margin: auto; background-color: rgba(0,0,0,0.4);}
+/**********/
+
+/* form */
+fieldset {width: 1000px; margin:auto; border: 3px solid rgba(255,255,255,0.1);}
+legend {color: white; padding:10px;}
+label { padding-left: 10px; width: 120px; float: left; color: white;}
+p:LAST-CHILD { text-align: center }
+textarea {width: 500px; height: 300px;}
+#inputFrom {color: white;}
+
+#btnGroup {width:300px; margin: 0 auto; padding-top:20px;  text-align:center; }
+#showContent {width: 700px;}
+#showContent tr td:FIRST-CHILD{ width: 100px;}
+
+/********/

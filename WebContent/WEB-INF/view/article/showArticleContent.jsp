@@ -7,17 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Show Article Content</title>
-<link rel="stylesheet" type="text/css" href="css/common.css">
-<style type="text/css">
-	#divArticleContent { width:1200px; }
-	.attr {width:100px;}
-	.val {width:600px;}
 </style>
 <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
 <script	src="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 	crossorigin="anonymous"></script>
 <script src="semantic/semantic.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/common.css">
 
 </head>
 <body>
@@ -28,8 +24,8 @@
 			alert("권한이 없습니다.");
 		</script>
 	</c:if>
-	<div id="divArticleContent">
-		<table border="1">
+	<div id="article">
+		<table id="showContent">
 			<tr>
 				<td class="attr">번호</td>
 				<td class="val">${articleContent.article.articleNo } </td>
@@ -55,12 +51,16 @@
 				<td class="val"><a href="downloadProcess.do?filename=${articleContent.filePath}">${articleContent.filePath}</a>
 			</tr>
 		</table>
-		<button type="button" onclick="location.href='modifyArticle.do?articleNo=${articleContent.article.articleNo }'">
+		<div id="btnGroup">
+		<button type="button" class="ui inverted gray basic button"
+				onclick="location.href='modifyArticle.do?articleNo=${articleContent.article.articleNo }'">
 			수정</button>
-		<button type="button" onclick="location.href='deleteArticle.do?articleNo=${articleContent.article.articleNo }&memberId=${articleContent.article.writerId.memberId }'">
+		<button type="button" class="ui inverted gray basic button"
+				onclick="location.href='deleteArticle.do?articleNo=${articleContent.article.articleNo }&memberId=${articleContent.article.writerId.memberId }'">
 			삭제</button>
-		<button type="button" onclick="history.back()">
-			돌아가기</button>	
+		<button type="button" class="ui inverted gray basic button" onclick="history.back()">
+			돌아가기</button>
+		</div>	
 	</div>
 	<jsp:include page="../../layout/footer.jsp"></jsp:include>
 </div>

@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Modify Article Form</title>
-<link rel="stylesheet" type="text/css" href="css/common.css">
 <style type="text/css">
 	fieldset {width: 700px;}
 </style>
@@ -14,11 +13,13 @@
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 	crossorigin="anonymous"></script>
 <script src="semantic/semantic.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/common.css">
 
 </head>
 <body>
 <div id ="wrap">
 	<jsp:include page="../../layout/header.jsp"></jsp:include>
+	<div id="article">
 	<form action="modifyArticle.do" method="post" name="f1" enctype="multipart/form-data">
 		<fieldset><legend>게시물 작성</legend>
 			<input type="hidden" name="articleNo" value="${articleContent.article.articleNo }">
@@ -38,6 +39,7 @@
 			<input type='button' value="돌아가기" onClick='history.back()'>
 		</fieldset>
 	</form>
+	</div>
 	<jsp:include page="../../layout/footer.jsp"></jsp:include>
 </div>
 </body>
