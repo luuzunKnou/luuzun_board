@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="java.net.URLEncoder"%>
+<%@page import="java.net.URLDecoder"%>
 
 <!DOCTYPE html>
 <html>
@@ -63,6 +65,12 @@
 		</div>	
 	</div>
 	<jsp:include page="../../layout/footer.jsp"></jsp:include>
+	
+	<%
+		Cookie cookie = new Cookie("artiCleNo"+URLEncoder.encode(request.getParameter("articleNo"),"UTF-8"),"true");
+		cookie.setMaxAge(60*60*24);
+		response.addCookie(cookie);
+	%>
 </div>
 </body>
 </html>

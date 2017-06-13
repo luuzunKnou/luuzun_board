@@ -40,7 +40,7 @@
 						<td>${item.articleNo }</td>
 						<td>${item.writerId.memberId }</td>
 						<td>${item.writerId.memberName }</td>
-						<td><a href="readArticle.do?articleNo=${item.articleNo}">${item.title}</a></td>
+						<td><a href="readArticle.do?articleNo=${item.articleNo}&isFromList='true'">${item.title}</a></td>
 						<td>${item.getArticleRegDateString()}</td>
 						<td>${item.getArticleModDateString()}</td>
 						<td>${item.readCnt}</td>

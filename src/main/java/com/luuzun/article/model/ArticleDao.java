@@ -13,4 +13,5 @@ public interface ArticleDao {
 	
 	public int updateCount(int articleNo); 
 	public int selectLastId();
+	public void addCnt(int articleNo);
 }

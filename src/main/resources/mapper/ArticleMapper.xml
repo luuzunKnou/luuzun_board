@@ -48,7 +48,7 @@
 			WHERE article_no=#{articleNo};
 	</delete>
 	
-	<update id="updateCount" parameterType="String">
+	<update id="addCnt" parameterType="int">
 		UPDATE article SET read_cnt = read_cnt+1 
 			WHERE article_no=#{articleNo};
 	</update>

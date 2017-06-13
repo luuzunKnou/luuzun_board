@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data-sources>
-	<data-source id="mysql5-15c8832573e-5c0ddbc44d9d050f" provider="mysql" driver="mysql5" name="MySQL - localhost(root)" save-password="true" show-system-objects="true" read-only="false">
-		<connection host="localhost" port="3306" server="" database="" url="jdbc:mysql://localhost:3306/" user="root" password="AQsJNFNMSwJl8w==" type="dev">
+	<data-source id="mysql5-15c9fb9afee-4603934738a5b898" provider="mysql" driver="mysql5" name="MySQL - localhost" save-password="true" show-system-objects="true" read-only="false">
+		<connection host="localhost" port="3306" server="" database="" url="jdbc:mysql://localhost:3306/" user="root" password="AQsJNFNMSwJl8w==" home="C:\Program Files\MySQL\MySQL Server 5.7" type="dev">
 			<network-handler type="PROXY" id="socks_proxy" enabled="false" save-password="false">
 				<property name="socks-port" value="1080"/>
 			</network-handler>
