@@ -1,5 +1,7 @@
 package com.luuzun.article.handler;
 
+import java.net.URLEncoder;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,22 +22,29 @@ public class ReadArticleHandler implements CommandHandler{
 		String isFromList = req.getParameter("isFromList");
 		System.out.println("@@@"+isFromList);
 		int articleNo = Integer.parseInt(req.getParameter("articleNo"));
+		String ReaderId = (String) req.getSession().getAttribute("userAuth");
 
 		try (SqlSession session = MySqlSessionFactory.openSession();){
 			ArticleContentDao dao = session.getMapper(ArticleContentDao.class);
 			articleContent = dao.selectById(articleNo);
-
 			ArticleDao articleDao = session.getMapper(ArticleDao.class);
 			/*if(isFromList != null){
 				articleDao.addCnt(articleNo);
 			}*/
+			String CookieName = "artiCleNo" + articleContent.getArticle().getArticleNo() +
+					"artiCleId" + ReaderId;
+			
+			Cookie cookie = new Cookie(URLEncoder.encode(CookieName,"UTF-8") , "true");
+			
+			cookie.setMaxAge(60*60*24);
+			res.addCookie(cookie);
 			
 			boolean isCounted = false;
 			Cookie[] cookies = req.getCookies();
 			if(cookies!=null){
 				for(int i =0; i<cookies.length; i++){
-					System.out.println("iscount == true: " + cookies[i].getName() + "::" + articleNo);
-					if(cookies[i].getName().equals("artiCleNo"+articleNo)){
+					System.out.println("iscount == true : " + cookies[i].getName());
+					if(cookies[i].getName().equals(CookieName)){
 						isCounted = true;
 					}
 				}
@@ -43,6 +52,10 @@ public class ReadArticleHandler implements CommandHandler{
 			System.out.println(isCounted);
 			if(!isCounted){
 				articleDao.addCnt(articleNo);
+			}
+			
+			for (Cookie cookieTest : cookies) {
+				System.out.println("@@"+cookieTest.getName() + "::" + cookieTest.getValue());
 			}
 			
 			req.setAttribute("articleContent", articleContent);

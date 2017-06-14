@@ -89,14 +89,6 @@ public class Article {
 		this.readCnt = readCnt;
 	}
 	
-	public String getWriterID(){
-		return writerId.getMemberId();
-	}
-	
-	public String getWriterName(){
-		return writerId.getMemberName();
-	}
-	
 	public String getArticleModDateString() {
 		return simpleDateFormat.format(articleModDate);
 	}

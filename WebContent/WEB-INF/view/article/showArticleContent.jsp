@@ -65,12 +65,6 @@
 		</div>	
 	</div>
 	<jsp:include page="../../layout/footer.jsp"></jsp:include>
-	
-	<%
-		Cookie cookie = new Cookie("artiCleNo"+URLEncoder.encode(request.getParameter("articleNo"),"UTF-8"),"true");
-		cookie.setMaxAge(60*60*24);
-		response.addCookie(cookie);
-	%>
 </div>
 </body>
 </html>
